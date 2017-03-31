@@ -1,0 +1,1028 @@
+
+        <html xmlns:v="urn:schemas-microsoft-com:vml"
+        xmlns:o="urn:schemas-microsoft-com:office:office"
+        xmlns:w="urn:schemas-microsoft-com:office:word"
+        xmlns="http://www.w3.org/TR/REC-html40">
+        <head><meta http-equiv=Content-Type content="text/html;  
+        charset=utf-8">
+        <style type="text/css">
+            table  
+            {  
+                border-collapse: collapse;
+                border: none;  
+                width: 100%;  
+            }  
+            td  
+            {  
+                border: solid #CCC 1px;  
+            }  
+            .codestyle{
+                word-break: break-all;
+                background:silver;mso-highlight:silver;
+            }
+        </style>
+        <meta name=ProgId content=Word.Document>
+        <meta name=Generator content="Microsoft Word 11">
+        <meta name=Originator content="Microsoft Word 11">
+        <xml><w:WordDocument><w:View>Print</w:View></xml></head>
+        <body><h1>1、响应状态码说明</h1><div style="margin-left:20px;"><h2>1xx消息</h2>
+<h2>2xx成功</h2>
+<ol>
+<li>
+<p>200 OK
+请求已成功，请求所希望的响应头或数据体将随此响应返回。</p>
+</li>
+<li>
+<p>201 Created
+请求已经被实现，而且有一个新的资源已经依据请求的需要而创建，且其URI已经随Location头信息返回。</p>
+</li>
+<li>
+<p>202 Accepted</p>
+</li>
+<li>204 No Content
+服务器成功处理了请求，但不需要返回任何实体内容，并且希望返回更新了的元信息。</li>
+</ol>
+<h2>3xx重定向</h2>
+<ol>
+<li>304 Not Modified
+如果客户端发送了一个带条件的GET请求且该请求已被允许，而文档的内容（自上次访问以来或者根据请求的条件）并没有改变，则服务器应当返回这个状态码。304响应禁止包含消息体，因此始终以消息头后的第一个空行结尾。</li>
+</ol>
+<h2>4xx客户端错误</h2>
+<ol>
+<li>
+<p>400 Bad Request
+由于包含语法错误，当前请求无法被服务器理解。除非进行修改，否则客户端不应该重复提交这个请求。</p>
+</li>
+<li>
+<p>401 Unauthorized
+当前请求需要用户验证。该响应必须包含一个适用于被请求资源的WWW-Authenticate信息头用以询问用户信息。</p>
+</li>
+<li>
+<p>403 Forbidden
+服务器已经理解请求，但是拒绝执行它。</p>
+</li>
+<li>
+<p>404 Not Found
+请求失败，请求所希望得到的资源未被在服务器上发现。</p>
+</li>
+<li>
+<p>405 Method Not Allowed
+请求的资源的内容特性无法满足请求头中的条件，因而无法生成响应实体。</p>
+</li>
+<li>
+<p>408 Request Timeout
+请求超时。</p>
+</li>
+<li>422 Unprocessable Entity
+请求格式正确，但是由于含有语义错误，无法响应。</li>
+</ol>
+<h2>5xx服务端错误</h2>
+<ol>
+<li>
+<p>500 Internal Server Error
+服务器遇到了一个未曾预料的状况，导致了它无法完成对请求的处理。</p>
+</li>
+<li>
+<p>502 Bad Gateway
+作为网关或者代理工作的服务器尝试执行请求时，从上游服务器接收到无效的响应。</p>
+</li>
+<li>503 Service Unavailable
+由于临时的服务器维护或者过载，服务器当前无法处理请求。</li>
+</ol>
+<p><strong>备注：</strong>HTTP状态码</p></div><h1>2、用户</h1><div style="margin-left:20px;"><h2>2.1、登入</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>用户登入接口</li>
+</ul>
+<p><strong>请求URL：</strong></p>
+<ul>
+<li><code>/api/token</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST</li>
+</ul>
+<p><strong>参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">account</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td style="text-align: left;">password</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>密码</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> {
+    &quot;status&quot;: 200,
+    &quot;msg&quot;: &quot;登入成功&quot;,
+    &quot;data&quot;: {
+        &quot;uid&quot;: 30,
+        &quot;name&quot;: null,
+        &quot;phoneNumber&quot;: &quot;13805987905&quot;,
+        &quot;avatar&quot;: null,
+        &quot;lastLoginTime&quot;: &quot;2017-03-23 01:15:32&quot;,
+        &quot;timed&quot;: null
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">String</td>
+<td>存放在头部token字段</td>
+</tr>
+<tr>
+<td style="text-align: left;">uid</td>
+<td style="text-align: left;">int</td>
+<td>用户id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">String</td>
+<td>用户昵称</td>
+</tr>
+<tr>
+<td style="text-align: left;">phoneNumber</td>
+<td style="text-align: left;">String</td>
+<td>用户手机号码</td>
+</tr>
+<tr>
+<td style="text-align: left;">avatar</td>
+<td style="text-align: left;">String</td>
+<td>用户头像地址</td>
+</tr>
+<tr>
+<td style="text-align: left;">lastLoginTime</td>
+<td style="text-align: left;">String</td>
+<td>最后一次登入时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">timed</td>
+<td style="text-align: left;">object</td>
+<td>计时记录</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h2>2.2、注册</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong></p>
+<ul>
+<li>用户注册接口</li>
+</ul>
+<p><strong>请求URL：</strong></p>
+<ul>
+<li><code>/api/user</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST</li>
+</ul>
+<p><strong>参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">account</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td style="text-align: left;">password</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>密码</td>
+</tr>
+<tr>
+<td style="text-align: left;">authCode</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>验证码</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;status&quot;: 200,
+    &quot;msg&quot;: &quot;注册成功&quot;,
+    &quot;data&quot;: {
+        &quot;uid&quot;: 34,
+        &quot;name&quot;: null,
+        &quot;phoneNumber&quot;: &quot;15205036404&quot;,
+        &quot;avatar&quot;: null,
+        &quot;lastLoginTime&quot;: &quot;2017-03-23 11:38:14&quot;,
+        &quot;timed&quot;: null
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">String</td>
+<td>存放在头部token字段</td>
+</tr>
+<tr>
+<td style="text-align: left;">uid</td>
+<td style="text-align: left;">int</td>
+<td>用户id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">String</td>
+<td>用户昵称</td>
+</tr>
+<tr>
+<td style="text-align: left;">phoneNumber</td>
+<td style="text-align: left;">String</td>
+<td>用户手机号码</td>
+</tr>
+<tr>
+<td style="text-align: left;">avatar</td>
+<td style="text-align: left;">String</td>
+<td>用户头像地址</td>
+</tr>
+<tr>
+<td style="text-align: left;">timed</td>
+<td style="text-align: left;">object</td>
+<td>用户计时记录</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong></p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h2>2.3、修改密码（忘记密码）</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>用户修改密码接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>/api/user/password</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>PUT </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">account</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td style="text-align: left;">newPassword</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>密码</td>
+</tr>
+<tr>
+<td style="text-align: left;">authCode</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>验证码</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;status&quot;: 200,
+    &quot;msg&quot;: &quot;修改密码成功&quot;,
+    &quot;data&quot;: null
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h2>2.4、获取用户信息</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong></p>
+<ul>
+<li>获取用户信息接口</li>
+</ul>
+<p><strong>请求URL：</strong></p>
+<ul>
+<li><code>/api/user</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET</li>
+</ul>
+<p><strong>参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>放在请求头token字段</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;status&quot;: 200,
+    &quot;msg&quot;: &quot;获取用户信息成功&quot;,
+    &quot;data&quot;: {
+        &quot;uid&quot;: 1,
+        &quot;name&quot;: null,
+        &quot;phoneNumber&quot;: &quot;13805987907&quot;,
+        &quot;avatar&quot;: null,
+        &quot;lastLoginTime&quot;: &quot;2017-03-31 01:34:49&quot;,
+        &quot;timed&quot;: null
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">uid</td>
+<td style="text-align: left;">int</td>
+<td>用户id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">String</td>
+<td>用户昵称</td>
+</tr>
+<tr>
+<td style="text-align: left;">phoneNumber</td>
+<td style="text-align: left;">String</td>
+<td>用户手机</td>
+</tr>
+<tr>
+<td style="text-align: left;">avatar</td>
+<td style="text-align: left;">String</td>
+<td>用户头像地址</td>
+</tr>
+<tr>
+<td style="text-align: left;">timed</td>
+<td style="text-align: left;">object</td>
+<td>计时记录</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h2>2.5、修改资料</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong></p>
+<ul>
+<li>用户信息修改接口</li>
+</ul>
+<p><strong>请求URL：</strong></p>
+<ul>
+<li><code>/api/user/</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>PUT</li>
+</ul>
+<p><strong>参数：</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>放在请求头token字段</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>昵称</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;status&quot;: 200,
+    &quot;msg&quot;: &quot;修改成功&quot;,
+    &quot;data&quot;: {
+        &quot;uid&quot;: 1,
+        &quot;name&quot;: &quot;lkl&quot;,
+        &quot;phoneNumber&quot;: &quot;13805987907&quot;,
+        &quot;avatar&quot;: null,
+        &quot;lastLoginTime&quot;: &quot;2017-03-31 01:34:49&quot;,
+        &quot;timed&quot;: null
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">uid</td>
+<td style="text-align: left;">int</td>
+<td>用户id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">string</td>
+<td>昵称</td>
+</tr>
+<tr>
+<td style="text-align: left;">phoneNumber</td>
+<td style="text-align: left;">String</td>
+<td>用户手机</td>
+</tr>
+<tr>
+<td style="text-align: left;">avatar</td>
+<td style="text-align: left;">string</td>
+<td>头像地址</td>
+</tr>
+<tr>
+<td style="text-align: left;">timed</td>
+<td style="text-align: left;">object</td>
+<td>计时记录</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong></p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div></div><h1>3、好友</h1><div style="margin-left:20px;"><h2>3.1、添加好友</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>添加好友接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>/api/friendRequest/</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>放在请求头token字段</td>
+</tr>
+<tr>
+<td style="text-align: left;">friendPhone</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>要添加的用户手机号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>     {
+        &quot;status&quot;: 200,
+        &quot;msg&quot;: &quot;已发送好友请求&quot;,
+        &quot;data&quot;: null
+    }</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h2>3.2、好友列表</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>好友每日排行接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>/api/friends</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET</li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>存放请求头token字段</td>
+</tr>
+<tr>
+<td style="text-align: left;">sort</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>"id":按id排序,                                                "timedDay":按每日计时时间排序，                                     "timedWeek"：按每周计时时间排序，                                               "timedMonth"：按每月计时时间排序，                                              "timedTotal"：按总计时时间排序</td>
+</tr>
+<tr>
+<td style="text-align: left;">page</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>页码</td>
+</tr>
+<tr>
+<td style="text-align: left;">size</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>每页记录数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    &quot;status&quot;: 200,
+    &quot;msg&quot;: &quot;获取好友列表成功&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;uid&quot;: 1,
+            &quot;name&quot;: &quot;lkl&quot;,
+            &quot;phoneNumber&quot;: &quot;13805987907&quot;,
+            &quot;avatar&quot;: null,
+            &quot;lastLoginTime&quot;: &quot;2017-03-31 04:17:52&quot;,
+            &quot;timed&quot;: null
+        }
+    ]
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">string</td>
+<td>响应头token字段</td>
+</tr>
+<tr>
+<td style="text-align: left;">uid</td>
+<td style="text-align: left;">int</td>
+<td>好友id</td>
+</tr>
+<tr>
+<td style="text-align: left;">phone</td>
+<td style="text-align: left;">string</td>
+<td>用户电话</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">string</td>
+<td>用户昵称</td>
+</tr>
+<tr>
+<td style="text-align: left;">avatar</td>
+<td style="text-align: left;">string</td>
+<td>用户头像地址</td>
+</tr>
+<tr>
+<td style="text-align: left;">timed</td>
+<td style="text-align: left;">long</td>
+<td>用户计时时间</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h2>3.3、接受/拒绝好友请求</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>接受/拒绝好友请求接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>/api/friend/</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST</li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>存放于请求头的token字段</td>
+</tr>
+<tr>
+<td style="text-align: left;">fid</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>好友id</td>
+</tr>
+<tr>
+<td style="text-align: left;">isAccept</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>是否接受好友请求</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> {
+    &quot;status&quot;: 200,
+    &quot;msg&quot;: &quot;已添加对方为好友&quot;,
+    &quot;data&quot;: null
+}</code></pre></table>
+<p><strong>返回参数说明</strong></p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">uid</td>
+<td style="text-align: left;">int</td>
+<td>被添加的好友id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">string</td>
+<td>好友昵称</td>
+</tr>
+<tr>
+<td style="text-align: left;">phoneNumber</td>
+<td style="text-align: left;">string</td>
+<td>好友手机</td>
+</tr>
+<tr>
+<td style="text-align: left;">avatar</td>
+<td style="text-align: left;">string</td>
+<td>好友头像地址</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h2>3.4、删除好友</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>用户注册接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>/api/friend</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>DELETE </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>存放于请求头的token字段</td>
+</tr>
+<tr>
+<td style="text-align: left;">fid</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>好友id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    &quot;status&quot;: 200,
+    &quot;msg&quot;: &quot;好友已删除&quot;,
+    &quot;data&quot;: null
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h2>3.5、获取好友请求列表</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>用户注册接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>/api/friendRequests</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET</li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>用户名存放于请求头token字段</td>
+</tr>
+<tr>
+<td style="text-align: left;">page</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>请求列表页码</td>
+</tr>
+<tr>
+<td style="text-align: left;">size</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>每页记录数</td>
+</tr>
+<tr>
+<td style="text-align: left;">sort</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>排序方式，例如："firstname&sort=lastname,desc"表示在按firstname正序排列基础上按lastname倒序排列</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    &quot;status&quot;: 200,
+    &quot;msg&quot;: &quot;获取好友请求列表成功&quot;
+    &quot;data&quot;: {
+        [
+            {
+                &quot;uid&quot; : 1,
+                &quot;name&quot;: &quot;ali&quot;,
+                &quot;phone&quot;: &quot;13802211331&quot;,
+                &quot;avatar&quot;: &quot;http://aa.aa.dd.jpg&quot;
+            },
+            {   
+                &quot;uid&quot;, 2,
+                &quot;name&quot;: &quot;ali&quot;,
+                &quot;phone&quot;: &quot;13802211331&quot;,
+                &quot;avatar&quot;: &quot;http://aa.aa.dd.jpg&quot;
+            }
+        ]
+    }
+  }</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">uid</td>
+<td style="text-align: left;">int</td>
+<td>好友id</td>
+</tr>
+<tr>
+<td style="text-align: left;">phone</td>
+<td style="text-align: left;">string</td>
+<td>好友手机号</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">string</td>
+<td>好友昵称</td>
+</tr>
+<tr>
+<td style="text-align: left;">avatar</td>
+<td style="text-align: left;">string</td>
+<td>好友头像地址</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div></div><h1>4、计时时间</h1><div style="margin-left:20px;"><h2>4.1、每日计时时间上传</h2><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>更新计时记录接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>/api/timed</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>PUT</li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>存放在请求头token字段</td>
+</tr>
+<tr>
+<td style="text-align: left;">timedDay</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>日计时时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">timedWeek</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>周计时时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">timed</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">iny</td>
+<td>月计时时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">timed</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">long</td>
+<td>总计时时间</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    &quot;status&quot;: 200,
+    &quot;msg&quot;: &quot;成功上传更新计时记录&quot;
+    &quot;data&quot;: {
+        &quot;timedDay&quot;: 1212,
+        &quot;timedWeek&quot;: 1212,
+        &quot;timedMonth&quot;: 1212,
+        &quot;timedTotal&quot;: 1212
+    }
+  }</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">timedDay</td>
+<td style="text-align: left;">是</td>
+<td>int</td>
+<td>日计时时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">timedWeek</td>
+<td style="text-align: left;">是</td>
+<td>int</td>
+<td>周计时时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">timed</td>
+<td style="text-align: left;">是</td>
+<td>iny</td>
+<td>月计时时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">timed</td>
+<td style="text-align: left;">是</td>
+<td>long</td>
+<td>总计时时间</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div></div></body></html>
